@@ -1,12 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This is a CDN for the Bootstrap library. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <!-- This is a CDN for the jQuery UI library. -->
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <!-- This is a CDN for the Font Awesome library. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- This is a CDN for the Montserrat font. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="./style.css">
     <title>SMIRK</title>
-</head>
-<body>
+    </head>
+
+    <body>
+    <!-- Header -->
+    <header class="bg-dark bg-gradient py-3">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <h1 class="text-light display-4 fw-bold mb-0 mb-md-3">SM<span class="IR">IR</span>K</h1>
+        <p class="text-light h5 d-none d-md-block mb-0">Stock Market Insights &amp; Ridiculous Knowledge</p>
+    </div>
+    </header>
+
+        <!-- Search bar and random stock card -->
+        <main class="container my-4">
+        <div class="row">
+            <!-- Search bar -->
+            <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <input
+                type="text"
+                class="form-control"
+                placeholder="Search stocks"
+                aria-label="Search stocks"
+                aria-describedby="button-addon2"
+                />
+                <button class="btn btn-primary" type="button" id="button-addon2">
+                Search
+                </button>
+            </div>
+            </div>
+
+            <!-- Random stock card -->
+            <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="rdm-ticker-name">Random Stock of the Day</h5>
+                <p class="rdm-value">Stock name: XYZ</p>
+                <p class="rdm-value-change">Value: $100</p>
+                <p class="rdm-percent-change">Points changed: <i class="arrow fas fa-arrow-up text-success"></i> +2.5 (+2.50%)</p>
+                <button class="btn btn-success" type="button">
+                    Add to My Stocks
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- My Stocks -->
+        <div class="row mt-4">
+            <div class="col">
+            <h2>My Stocks</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Ticker Name</th>
+                    <th>Value</th>
+                    <th>Points Changed</th>
+                    <th>% Changed</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="ticker-name">ABC</td>
+                    <td class="value">$50</td>
+                    <td class="value-change">
+                    <i class="arrow fas fa-arrow-down text-danger"></i> -2.0
+                    </td>
+                    <td class="percent-change">-2.00%</td>
+                    <td>
+                    <button class="btn btn-danger" type="button">Remove</button>
+                    </td>
+                </tr>
+                <!-- more rows here -->
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </main>
+
+
+
+        <!-- A CDN for the dayjs library. -->
+        <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"
+    ></script>
+    <!-- This is a CDN for the jQuery library. -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- This is a CDN for the Bootstrap library. -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+        <script src="./script.js"></script>
     
-</body>
-</html>
+    </body>
+    </html>
