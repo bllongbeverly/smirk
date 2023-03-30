@@ -11,21 +11,26 @@ var url = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/range/1/day/2023
 
 
 
-/*
+
 function unixToTimestamp(unix) {
 
-  var timestamp = unix*1000;
-  var date = "";
+  var timestamp = new Date(unix*1000);
 
-  date = "Date: "+ timestamp.getDate()+
+  var date = timestamp.toLocaleDateString("en-US");
+
+  /*
+  var date = "Date: "+ timestamp.getDate()+
            "/"+(timestamp.getMonth()+1)+
            "/"+timestamp.getFullYear()+
            " "+timestamp.getHours()+
            ":"+timestamp.getMinutes()+
            ":"+timestamp.getSeconds();
+           */
+
+  return date;
 
 }
-*/
+
 
 var array = [2];
 
@@ -33,6 +38,7 @@ function parse(data) {
   console.log(data);
   array[0] = data.results[0].t;
   console.log(array[0]);
+  console.log(unixToTimestamp(array[0]));
 }
 
 function displayPrice() {
