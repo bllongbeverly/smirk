@@ -1,0 +1,11 @@
+header {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, p {
+  margin: 0;
+}
+
+.IR {
+  color: rgb(206, 206, 206);
+}
