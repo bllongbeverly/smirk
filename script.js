@@ -24,3 +24,23 @@ async function returnStockData(ticker) {
   return data;
 
 }
+
+// Get the search input and button elements
+const searchInput = document.querySelector('#searchStocksInput');
+const searchButton = document.querySelector('#button-addon2');
+
+// Get the element to update with the search text
+const tickerName = document.querySelector('.rdm-ticker-name');
+
+// Get the "Add to My Stocks" button and the "My Stocks" table body
+const addToMyStocksButton = document.querySelector('.btn-success');
+const myStocksTableBody = document.querySelector('.table tbody');
+
+// Add a click event listener to the search button
+searchButton.addEventListener('click', function () {
+  // Get the value of the search input
+  const searchText = searchInput.value;
+
+  // Update the ticker name element with the search text
+  tickerName.textContent = `Search results for "${searchText}"`;
+});
