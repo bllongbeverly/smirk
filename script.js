@@ -1,49 +1,26 @@
+async function returnStockData(ticker) {
 
-{
-  var key = "EsYRiuO5UyJ3IGNWDCggwH54klr9JIi8";
-}
+  {
+    var key = "EsYRiuO5UyJ3IGNWDCggwH54klr9JIi8";
+  }
 
+  var today = new Date();
+  var dd = String(today.getDate() - 1).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  today = yyyy + '-' + mm + '-' + dd;
 
-var ticker = "AAPL";
+  var url = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/range/1/day/" + today + "/" + today + "?adjusted=true&sort=asc&limit=120&apiKey=" + key;
 
-
-var url = "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/range/1/day/2023-01-09/2023-03-09?adjusted=true&sort=asc&limit=120&apiKey=" + key;
-
-
-
-
-function unixToTimestamp(unix) {
-
-  var timestamp = new Date(unix*1000);
-
-  var date = timestamp.toLocaleDateString("en-US");
-
-  /*
-  var date = "Date: "+ timestamp.getDate()+
-           "/"+(timestamp.getMonth()+1)+
-           "/"+timestamp.getFullYear()+
-           " "+timestamp.getHours()+
-           ":"+timestamp.getMinutes()+
-           ":"+timestamp.getSeconds();
-           */
-
-  return date;
+  let response = await fetch(url);
+  let temp = await response.json();
+  var dat = temp.results[0];
+  var data = {
+  'price' : dat.c,
+  'prevPrice' : dat.o,
+  'pointsChanged' : dat.c - dat.o,
+  'percChanged' : (dat.c - dat.o) / dat.o,
+  };
+  return data;
 
 }
-
-
-var array = [2];
-
-function parse(data) {
-  console.log(data);
-  array[0] = data.results[0].t;
-  console.log(array[0]);
-  console.log(unixToTimestamp(array[0]));
-}
-
-function displayPrice() {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => parse(data));
-}
-
