@@ -82,4 +82,5 @@ addToMyStocksButton.addEventListener('click', function () {
 
   // Append the new row to the "My Stocks" table body
   myStocksTableBody.appendChild(newRow);
+  
 });
