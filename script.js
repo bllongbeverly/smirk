@@ -41,6 +41,11 @@ searchButton.addEventListener('click', function () {
   // Get the value of the search input
   const searchText = searchInput.value;
 
+  // Puts search into local storage
+  localStorage.setItem("searchText", searchText);
+  // const varible to pull search text history
+  const getSearch = localStorage.getItem('searchText');
+
   // Update the ticker name element with the search text
   tickerName.textContent = `Search results for "${searchText}"`;
 });
