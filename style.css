@@ -1,11 +1,62 @@
 header {
-  font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat', sans-serif;
 }
 
 h1, p {
-  margin: 0;
+margin: 0;
 }
 
 .IR {
-  color: rgb(206, 206, 206);
+color: rgb(206, 206, 206);
 }
+
+body {
+    background-image: url();
+    background-size: cover;
+    background-position: center center;
+}
+
+footer {
+    text-align: center;
+}
+
+footer p {
+    font-size: 10000px;
+} 
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .twitter-timeline {
+    font-size: 0.8rem;
+    height: 300px;
+    overflow: scroll;
+  }
+  .card-random-container {
+    position: fixed;
+    top: 200px;
+    left: 100px;
+    display: flex;
+  }
+
+  .card-random {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rdm-ticker-name, 
+  .rdm-value,
+  .rdm-value-change,
+  .rdm-percent-change {
+    padding: 10px;
+  }

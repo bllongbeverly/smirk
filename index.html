@@ -63,74 +63,72 @@
             <button class="btn btn-primary" type="button" id="button-addon2">
               Search
             </button>
+        
+          </div>
+          <!-- Random Stock of the Day -->
+          <div class="card-body">
+            <h5 id="ticker-name" class="rdm-ticker-name">
+              Random Stock of the Day
+            </h5>
+            <p id="stock-name" class="rdm-value">Stock name: </p>
+            <p id="value" class="rdm-value-change">Value: $100</p>
+            <p id="percent" class="rdm-percent-change">
+              Points changed:
+              <i class="arrow fas fa-arrow-up text-success"></i> +2.5 (+2.50%)
+            </p>
+            <button class="btn btn-success" type="button">
+              Add to My Stocks
+            </button>
           </div>
         </div>
 
         <!-- Twitter card -->
 <div class="col-md-8 mb-3">
     <div class="card">
-        <div class="card-body">
-            <h5 class="card-title"></h5>
-            <div id="tweet-container">
-                <a class="twitter-timeline" data-tweet-limit="1" data-lang="en" data-dnt="true" data-theme="dark" href="https://twitter.com/capitol2iq?ref_src=twsrc%5Etfw">Tweets by capitol2iq</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <div id="tweet-container" class="twitter-timeline">
+          <a class="twitter-timeline" data-tweet-limit="1" data-lang="en" data-dnt="true" data-theme="dark" href="https://twitter.com/capitol2iq?ref_src=twsrc%5Etfw">Tweets by capitol2iq</a> 
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        
+      </div>
     </div>
-</div>
-        <!-- Random stock card -->
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 id="ticker-name" class="rdm-ticker-name">
-                Random Stock of the Day
-              </h5>
-              <p id="stock-name" class="rdm-value">Stock name: </p>
-              <p id="value" class="rdm-value-change">Value: $100</p>
-              <p id="percent" class="rdm-percent-change">
-                Points changed:
-                <i class="arrow fas fa-arrow-up text-success"></i> +2.5 (+2.50%)
-              </p>
-              <button class="btn btn-success" type="button">
-                Add to My Stocks
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- My Stocks -->
-      <div class="row mt-4">
-        <div class="col">
-          <h2>My Stocks</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Ticker Name</th>
-                <th>Value</th>
-                <th>Points Changed</th>
-                <th>% Changed</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <ul>
-                  <td id="myTicker" class="my-ticker-name"></td>
-                  <td id="myValue" class="value"></td>
-                  <td id="myValueChange" class="value-change">
-                    <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
-                  </td>
-                  <td id="myPercChange" class="percent-change"></td>
-                  <td>
-                    <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
-                  </td>
-                </ul>
-              </tr>
-              <!-- more rows here -->
-            </tbody>
-          </table>
-        </div>
-      </div>
+  </div>
+  
+  <!-- My Stocks -->
+  <div class="row mt-4 w-100">
+    <div class="col">
+      <h2>My Stocks</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ticker Name</th>
+            <th>Value</th>
+            <th>Points Changed</th>
+            <th>% Changed</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <ul>
+              <td id="myTicker" class="my-ticker-name"></td>
+              <td id="myValue" class="value"></td>
+              <td id="myValueChange" class="value-change">
+                <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
+              </td>
+              <td id="myPercChange" class="percent-change"></td>
+              <td>
+                <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
+              </td>
+            </ul>
+          </tr>
+          <!-- more rows here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
     </main>
 
     <!-- A CDN for the dayjs library. -->
