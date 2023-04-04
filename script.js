@@ -30,7 +30,7 @@ const searchInput = document.querySelector('#searchStocksInput');
 const searchButton = document.querySelector('#button-addon2');
 
 // Get the element to update with the search text
-const tickerName = document.querySelector('.rdm-ticker-name');
+const tickerName = document.getElementById('ticker-name');
 
 // Get the "Add to My Stocks" button and the "My Stocks" table body
 const addToMyStocksButton = document.querySelector('.btn-success');
