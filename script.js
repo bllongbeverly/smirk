@@ -56,9 +56,56 @@ searchButton.addEventListener("click", function () {
   // Update the ticker name element with the search text
   tickerName.textContent = `Search results for "${searchText}"`;
 });
-
 // Add a click event listener to the "Add to My Stocks" button
-addToMyStocksButton.addEventListener("click", function () {
+addToMyStocksButton.addEventListener("click", async function () {
+  const searchText = searchInput.value;
+  await display_results(searchText);
+  searchInput.value = "";
+});
+
+// // Add a click event listener to the "Add to My Stocks" button
+// addToMyStocksButton.addEventListener("click", function () {
+//   // Create a new table row and table cells
+//   const newRow = document.createElement("tr");
+//   const tickerCell = document.createElement("td");
+//   const valueCell = document.createElement("td");
+//   const valueChangeCell = document.createElement("td");
+//   const percentChangeCell = document.createElement("td");
+//   const removeButtonCell = document.createElement("td");
+
+//   // Set the text content of the table cells
+//   tickerCell.textContent = tickerName.textContent
+//     .replace('Search results for "', "")
+//     .replace('"', "");
+//   valueCell.textContent = "$0";
+//   valueChangeCell.textContent = "0";
+//   percentChangeCell.textContent = "0%";
+
+//   // Create a remove button
+//   const removeButton = document.createElement("button");
+//   removeButton.textContent = "Remove";
+//   removeButton.classList.add("btn", "btn-danger");
+//   removeButton.addEventListener("click", function () {
+//     newRow.remove();
+//   });
+
+//   // Append the remove button to its table cell
+//   removeButtonCell.appendChild(removeButton);
+
+//   // Append the table cells to the new table row
+//   newRow.appendChild(tickerCell);
+//   newRow.appendChild(valueCell);
+//   newRow.appendChild(valueChangeCell);
+//   newRow.appendChild(percentChangeCell);
+//   newRow.appendChild(removeButtonCell);
+
+//   // Append the new row to the "My Stocks" table body
+//   myStocksTableBody.appendChild(newRow);
+// });
+
+async function display_results(ticker) {
+  const data = await returnStockData(ticker);
+
   // Create a new table row and table cells
   const newRow = document.createElement("tr");
   const tickerCell = document.createElement("td");
@@ -68,12 +115,10 @@ addToMyStocksButton.addEventListener("click", function () {
   const removeButtonCell = document.createElement("td");
 
   // Set the text content of the table cells
-  tickerCell.textContent = tickerName.textContent
-    .replace('Search results for "', "")
-    .replace('"', "");
-  valueCell.textContent = "$0";
-  valueChangeCell.textContent = "0";
-  percentChangeCell.textContent = "0%";
+  tickerCell.textContent = ticker;
+  valueCell.textContent = `$${data.price.toFixed(2)}`;
+  valueChangeCell.textContent = `${data.pointsChanged.toFixed(2)}`;
+  percentChangeCell.textContent = `${(data.percChanged * 100).toFixed(2)}%`;
 
   // Create a remove button
   const removeButton = document.createElement("button");
@@ -95,25 +140,24 @@ addToMyStocksButton.addEventListener("click", function () {
 
   // Append the new row to the "My Stocks" table body
   myStocksTableBody.appendChild(newRow);
-});
-
-async function display_results(ticker) {
-  data = await returnStockData(ticker);
-
-  var newStock = document.createElement('li');
-  newStock.innerHTML = `
-  
-  <td id="myTicker" class="my-ticker-name">` + ticker + `</td>
-  <td id="myValue" class="value">` + data['price'] + `</td>
-  <td id="myValueChange" class="value-change">` + data['pointsChanged'] + `
-    <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
-  </td>
-  <td id="myPercChange" class="percent-change">` + data['percChanged'] + `</td>
-  <td>
-    <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
-  </td>`;
-  document.getElementById("list_of_stocks").append(newStock);
 }
+
+
+
+//   var newStock = document.createElement('li');
+//   newStock.innerHTML = `
+  
+//   <td id="myTicker" class="my-ticker-name">` + ticker + `</td>
+//   <td id="myValue" class="value">` + data['price'] + `</td>
+//   <td id="myValueChange" class="value-change">` + data['pointsChanged'] + `
+//     <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
+//   </td>
+//   <td id="myPercChange" class="percent-change">` + data['percChanged'] + `</td>
+//   <td>
+//     <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
+//   </td>`;
+//   document.getElementById("list_of_stocks").append(newStock);
+// }
 
 async function display_results_temp(ticker) {
   data = await returnStockData(ticker);
