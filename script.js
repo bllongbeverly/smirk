@@ -96,3 +96,22 @@ addToMyStocksButton.addEventListener("click", function () {
   // Append the new row to the "My Stocks" table body
   myStocksTableBody.appendChild(newRow);
 });
+
+function display_results(ticker) {
+  data = returnStockData(ticker);
+
+  var newStock = `
+  <li>
+    <td id="myTicker" class="my-ticker-name">` + ticker + `</td>
+    <td id="myValue" class="value">` + data['price'] + `</td>
+    <td id="myValueChange" class="value-change">` + data['pointsChanged'] + `
+      <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
+    </td>
+    <td id="myPercChange" class="percent-change">` + data['percChanged'] + `</td>
+    <td>
+      <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
+    </td>
+  </li>
+  `;
+  document.getElementById("list_of_stocks").append(newStock);
+}
