@@ -114,3 +114,21 @@ async function display_results(ticker) {
   </td>`;
   document.getElementById("list_of_stocks").append(newStock);
 }
+
+async function display_results_temp(ticker) {
+  data = await returnStockData(ticker);
+
+  var newStock = document.createElement('li');
+  newStock.innerHTML = `
+  
+  <td id="myTicker" class="my-ticker-name">` + ticker + `</td>
+  <td id="myValue" class="value">` + data['price'] + `</td>
+  <td id="myValueChange" class="value-change">` + data['pointsChanged'] + `
+    <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
+  </td>
+  <td id="myPercChange" class="percent-change">` + data['percChanged'] + `</td>
+  <td>
+    <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
+  </td>`;
+  document.getElementById("rando_stock").append(newStock);
+}
