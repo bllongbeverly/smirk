@@ -56,6 +56,7 @@ searchButton.addEventListener("click", function () {
   // Update the ticker name element with the search text
   tickerName.textContent = `Search results for "${searchText}"`;
 });
+
 // Add a click event listener to the "Add to My Stocks" button
 addToMyStocksButton.addEventListener("click", async function () {
   const searchText = searchInput.value;
