@@ -162,18 +162,17 @@ async function display_results(ticker) {
 async function display_results_temp(ticker) {
   data = await returnStockData(ticker);
 
-  var newStock = document.createElement('li');
+  var newStock = document.createElement('div');
   newStock.innerHTML = `
-
   <h5 id="ticker-name" class="rdm-ticker-name">
               Random Stock of the Day
             </h5>
             <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
-            <p id="value" class="rdm-value-change">Value: ` + data['price'] + `</p>
+            <p id="value" class="rdm-value-change">Value: $` + data['price'] + `</p>
             <p id="percent" class="rdm-percent-change">
               Points changed:
-              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `(+2.50%)
+              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `
             </p>`;
             
-  document.getElementById("rando_stock").append(newStock);
+  document.getElementById("rando_stock").innerHTML = newStock.innerHTML;
 }
