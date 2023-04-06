@@ -165,7 +165,7 @@ async function display_results_temp(ticker) {
   var newStock = document.createElement('div');
   newStock.innerHTML = `
   <h5 id="ticker-name" class="rdm-ticker-name">
-              Random Stock of the Day
+              Search Results:
             </h5>
             <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
             <p id="value" class="rdm-value-change">Value: $` + data['price'] + `</p>
