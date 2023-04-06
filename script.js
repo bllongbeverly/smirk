@@ -25,8 +25,8 @@ async function returnStockData(ticker) {
   var data = {
     price: dat.c,
     prevPrice: dat.o,
-    pointsChanged: dat.c - dat.o,
-    percChanged: (dat.c - dat.o) / dat.o,
+    pointsChanged: (dat.c - dat.o).toFixed(2),
+    percChanged: (((dat.c - dat.o) / dat.o) * 100).toFixed(2) + "%",
   };
   return data;
 }
