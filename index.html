@@ -60,7 +60,7 @@
               aria-label="Search stocks"
               aria-describedby="button-addon2"
             />
-            <button class="btn btn-primary" type="button" id="button-addon2" onclick="display_results(this.value)">
+            <button class="btn btn-primary" type="button" id="button-addon2">
               Search
             </button>
         
@@ -76,7 +76,7 @@
               Points changed:
               <i class="arrow fas fa-arrow-up text-success"></i> +2.5 (+2.50%)
             </p>
-            <button class="btn btn-success" type="button">
+            <button class="btn btn-success" type="button" onclick="display_results(document.getElementById('searchStocksInput').value)">
               Add to My Stocks
             </button>
           </div>
