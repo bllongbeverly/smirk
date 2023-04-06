@@ -67,15 +67,8 @@
           </div>
           <!-- Random Stock of the Day -->
           <div class="card-body">
-            <h5 id="ticker-name" class="rdm-ticker-name">
-              Random Stock of the Day
-            </h5>
-            <p id="stock-name" class="rdm-value">Stock name: </p>
-            <p id="value" class="rdm-value-change">Value: $100</p>
-            <p id="percent" class="rdm-percent-change">
-              Points changed:
-              <i class="arrow fas fa-arrow-up text-success"></i> +2.5 (+2.50%)
-            </p>
+            <div id="rando_stock">
+            </div>
             <button class="btn btn-success" type="button" onclick="display_results(document.getElementById('searchStocksInput').value)">
               Add to My Stocks
             </button>

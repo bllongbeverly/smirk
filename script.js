@@ -120,15 +120,16 @@ async function display_results_temp(ticker) {
 
   var newStock = document.createElement('li');
   newStock.innerHTML = `
-  
-  <td id="myTicker" class="my-ticker-name">` + ticker + `</td>
-  <td id="myValue" class="value">` + data['price'] + `</td>
-  <td id="myValueChange" class="value-change">` + data['pointsChanged'] + `
-    <!-- <i class="arrow fas fa-arrow-down text-danger"></i>  -->
-  </td>
-  <td id="myPercChange" class="percent-change">` + data['percChanged'] + `</td>
-  <td>
-    <!-- <button onclick="clearHistory()" class="btn btn-danger" type="button">Remove</button> -->
-  </td>`;
+
+  <h5 id="ticker-name" class="rdm-ticker-name">
+              Random Stock of the Day
+            </h5>
+            <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
+            <p id="value" class="rdm-value-change">Value: ` + data['price'] + `</p>
+            <p id="percent" class="rdm-percent-change">
+              Points changed:
+              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `(+2.50%)
+            </p>`;
+            
   document.getElementById("rando_stock").append(newStock);
 }
