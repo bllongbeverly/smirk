@@ -116,9 +116,9 @@ async function display_results(ticker) {
 
   // Set the text content of the table cells
   tickerCell.textContent = ticker;
-  valueCell.textContent = `$${data.price.toFixed(2)}`;
-  valueChangeCell.textContent = `${data.pointsChanged.toFixed(2)}`;
-  percentChangeCell.textContent = `${(data.percChanged * 100).toFixed(2)}%`;
+  valueCell.textContent = `$${data.price}`;
+  valueChangeCell.textContent = `${data.pointsChanged}`;
+  percentChangeCell.textContent = `${data.percChanged}`;
 
   // Create a remove button
   const removeButton = document.createElement("button");
