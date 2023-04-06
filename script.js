@@ -25,8 +25,8 @@ async function returnStockData(ticker) {
   var data = {
     price: dat.c,
     prevPrice: dat.o,
-    pointsChanged: dat.c - dat.o,
-    percChanged: (dat.c - dat.o) / dat.o,
+    pointsChanged: (dat.c - dat.o).toFixed(2),
+    percChanged: (((dat.c - dat.o) / dat.o) * 100).toFixed(2) + "%",
   };
   return data;
 }
@@ -116,9 +116,9 @@ async function display_results(ticker) {
 
   // Set the text content of the table cells
   tickerCell.textContent = ticker;
-  valueCell.textContent = `$${data.price.toFixed(2)}`;
-  valueChangeCell.textContent = `${data.pointsChanged.toFixed(2)}`;
-  percentChangeCell.textContent = `${(data.percChanged * 100).toFixed(2)}%`;
+  valueCell.textContent = `$${data.price}`;
+  valueChangeCell.textContent = `${data.pointsChanged}`;
+  percentChangeCell.textContent = `${data.percChanged}`;
 
   // Create a remove button
   const removeButton = document.createElement("button");
@@ -162,18 +162,17 @@ async function display_results(ticker) {
 async function display_results_temp(ticker) {
   data = await returnStockData(ticker);
 
-  var newStock = document.createElement('li');
+  var newStock = document.createElement('div');
   newStock.innerHTML = `
-
   <h5 id="ticker-name" class="rdm-ticker-name">
-              Random Stock of the Day
+              Search Results:
             </h5>
             <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
-            <p id="value" class="rdm-value-change">Value: ` + data['price'] + `</p>
+            <p id="value" class="rdm-value-change">Value: $` + data['price'] + `</p>
             <p id="percent" class="rdm-percent-change">
               Points changed:
-              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `(+2.50%)
+              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `
             </p>`;
             
-  document.getElementById("rando_stock").append(newStock);
+  document.getElementById("rando_stock").innerHTML = newStock.innerHTML;
 }
