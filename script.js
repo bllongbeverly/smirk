@@ -124,11 +124,21 @@ async function display_results(ticker) {
   const percentChangeCell = document.createElement("td");
   const removeButtonCell = document.createElement("td");
 
+    // Determine whether arrow should be up or down
+  var arrow = '';
+  if(data['pointsChanged'] > 0) {
+    arrow = '<i class="arrow fas fa-arrow-up text-success"></i>' + data["percChanged"];
+  }
+  if(data['pointsChanged'] < 0) {
+    console.log("down");
+    arrow = '<i class="arrow fas fa-arrow-down text-danger"></i>' + data["percChanged"];
+  }
+
   // Set the text content of the table cells
   tickerCell.textContent = ticker;
-  valueCell.textContent = `$${data.price}`;
+  valueCell.textContent = `${data.price}`;
   valueChangeCell.textContent = `${data.pointsChanged}`;
-  percentChangeCell.textContent = `${data.percChanged}`;
+  percentChangeCell.innerHTML = arrow;
 
   // Create a remove button
   const removeButton = document.createElement("button");
@@ -168,20 +178,29 @@ async function display_results(ticker) {
 //   </td>`;
 //   document.getElementById("list_of_stocks").append(newStock);
 // }
-
 async function display_results_temp(ticker) {
   data = await returnStockData(ticker);
+  
+  var arrow = '';
+
+  if(data['pointsChanged'] > 0) {
+    arrow = '<i class="arrow fas fa-arrow-up text-success"></i>' + data["percChanged"];
+  }
+  if(data['pointsChanged'] < 0) {
+    console.log("down");
+    arrow = '<i class="arrow fas fa-arrow-down text-danger"></i>' + data["percChanged"];
+  }
 
   var newStock = document.createElement('div');
   newStock.innerHTML = `
   <h5 id="ticker-name" class="rdm-ticker-name">
-              Search Results:
+              Random Stock of the Day
             </h5>
             <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
             <p id="value" class="rdm-value-change">Value: $` + data['price'] + `</p>
             <p id="percent" class="rdm-percent-change">
               Points changed:
-              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `
+              ` + arrow + `
             </p>`;
             
   document.getElementById("rando_stock").innerHTML = newStock.innerHTML;
