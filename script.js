@@ -41,6 +41,13 @@ const tickerName = document.getElementById("ticker-name");
 // Get the "Add to My Stocks" button and the "My Stocks" table body
 const addToMyStocksButton = document.querySelector(".btn-success");
 const myStocksTableBody = document.querySelector(".table tbody");
+const myStocksList = JSON.parse(localStorage.getItem("history"));
+if (myStocksList) {
+  myStocksList.forEach(async function (stock) {
+    await display_results(stock);
+  });
+}
+display_results();
 
 // Add a click event listener to the search button
 searchButton.addEventListener("click", function () {
