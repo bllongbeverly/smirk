@@ -41,16 +41,23 @@ const tickerName = document.getElementById("ticker-name");
 // Get the "Add to My Stocks" button and the "My Stocks" table body
 const addToMyStocksButton = document.querySelector(".btn-success");
 const myStocksTableBody = document.querySelector(".table tbody");
+const myStocksList = JSON.parse(localStorage.getItem("history"));
+if (myStocksList) {
+  myStocksList.forEach(async function (stock) {
+    await display_results(stock);
+  });
+}
+display_results();
 
 // Add a click event listener to the search button
 searchButton.addEventListener("click", function () {
   // Get the value of the search input
   const searchText = searchInput.value;
 
-  // Puts search into local storage
-  localStorage.setItem("searchText", searchText);
-  // const varible to pull search text history
-  const getSearch = localStorage.getItem("searchText");
+  // // Puts search into local storage
+  // localStorage.setItem("searchText", searchText);
+  // // const varible to pull search text history
+  // const getSearch = localStorage.getItem("searchText");
 
   
   // Update the ticker name element with the search text
@@ -113,6 +120,14 @@ addToMyStocksButton.addEventListener("click", async function () {
 //   myStocksTableBody.appendChild(newRow);
 // });
 
+function removeLocalStorage (valueToRemove) {
+  var history =JSON.parse(window.localStorage.getItem('history'));
+  const filteredValue = history.filter(function(item) {
+    return item !== valueToRemove;
+  });
+  window.localStorage.setItem('history', JSON.stringify(filteredValue));
+}
+
 async function display_results(ticker) {
   const data = await returnStockData(ticker);
 
@@ -146,6 +161,7 @@ async function display_results(ticker) {
   removeButton.classList.add("btn", "btn-danger");
   removeButton.addEventListener("click", function () {
     newRow.remove();
+    removeLocalStorage(ticker);
   });
 
   // Append the remove button to its table cell
