@@ -56,10 +56,20 @@ searchButton.addEventListener("click", function () {
   // Update the ticker name element with the search text
   tickerName.textContent = `Search results for "${searchText}"`;
 });
+
+function store(newStock) {
+  var historyArray = JSON.parse(window.localStorage.getItem('history')) || [];
+  if (historyArray.indexOf(newStock) === -1) {
+    historyArray.push(newStock);
+    window.localStorage.setItem('history', JSON.stringify(historyArray));
+  }
+}
+
 // Add a click event listener to the "Add to My Stocks" button
 addToMyStocksButton.addEventListener("click", async function () {
   const searchText = searchInput.value;
   await display_results(searchText);
+  store(searchText);
   searchInput.value = "";
 });
 
