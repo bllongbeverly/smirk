@@ -41,25 +41,42 @@ const tickerName = document.getElementById("ticker-name");
 // Get the "Add to My Stocks" button and the "My Stocks" table body
 const addToMyStocksButton = document.querySelector(".btn-success");
 const myStocksTableBody = document.querySelector(".table tbody");
+const myStocksList = JSON.parse(localStorage.getItem("history"));
+if (myStocksList) {
+  myStocksList.forEach(async function (stock) {
+    await display_results(stock);
+  });
+}
+display_results();
 
 // Add a click event listener to the search button
 searchButton.addEventListener("click", function () {
   // Get the value of the search input
   const searchText = searchInput.value;
 
-  // Puts search into local storage
-  localStorage.setItem("searchText", searchText);
-  // const varible to pull search text history
-  const getSearch = localStorage.getItem("searchText");
+  // // Puts search into local storage
+  // localStorage.setItem("searchText", searchText);
+  // // const varible to pull search text history
+  // const getSearch = localStorage.getItem("searchText");
 
   
   // Update the ticker name element with the search text
   tickerName.textContent = `Search results for "${searchText}"`;
 });
+
+function store(newStock) {
+  var historyArray = JSON.parse(window.localStorage.getItem('history')) || [];
+  if (historyArray.indexOf(newStock) === -1) {
+    historyArray.push(newStock);
+    window.localStorage.setItem('history', JSON.stringify(historyArray));
+  }
+}
+
 // Add a click event listener to the "Add to My Stocks" button
 addToMyStocksButton.addEventListener("click", async function () {
   const searchText = searchInput.value;
   await display_results(searchText);
+  store(searchText);
   searchInput.value = "";
 });
 
@@ -103,6 +120,14 @@ addToMyStocksButton.addEventListener("click", async function () {
 //   myStocksTableBody.appendChild(newRow);
 // });
 
+function removeLocalStorage (valueToRemove) {
+  var history =JSON.parse(window.localStorage.getItem('history'));
+  const filteredValue = history.filter(function(item) {
+    return item !== valueToRemove;
+  });
+  window.localStorage.setItem('history', JSON.stringify(filteredValue));
+}
+
 async function display_results(ticker) {
   const data = await returnStockData(ticker);
 
@@ -114,11 +139,21 @@ async function display_results(ticker) {
   const percentChangeCell = document.createElement("td");
   const removeButtonCell = document.createElement("td");
 
+    // Determine whether arrow should be up or down
+  var arrow = '';
+  if(data['pointsChanged'] > 0) {
+    arrow = '<i class="arrow fas fa-arrow-up text-success"></i>' + data["percChanged"];
+  }
+  if(data['pointsChanged'] < 0) {
+    console.log("down");
+    arrow = '<i class="arrow fas fa-arrow-down text-danger"></i>' + data["percChanged"];
+  }
+
   // Set the text content of the table cells
   tickerCell.textContent = ticker;
-  valueCell.textContent = `$${data.price}`;
+  valueCell.textContent = `${data.price}`;
   valueChangeCell.textContent = `${data.pointsChanged}`;
-  percentChangeCell.textContent = `${data.percChanged}`;
+  percentChangeCell.innerHTML = arrow;
 
   // Create a remove button
   const removeButton = document.createElement("button");
@@ -126,6 +161,7 @@ async function display_results(ticker) {
   removeButton.classList.add("btn", "btn-danger");
   removeButton.addEventListener("click", function () {
     newRow.remove();
+    removeLocalStorage(ticker);
   });
 
   // Append the remove button to its table cell
@@ -158,20 +194,29 @@ async function display_results(ticker) {
 //   </td>`;
 //   document.getElementById("list_of_stocks").append(newStock);
 // }
-
 async function display_results_temp(ticker) {
   data = await returnStockData(ticker);
+  
+  var arrow = '';
+
+  if(data['pointsChanged'] > 0) {
+    arrow = '<i class="arrow fas fa-arrow-up text-success"></i>' + data["percChanged"];
+  }
+  if(data['pointsChanged'] < 0) {
+    console.log("down");
+    arrow = '<i class="arrow fas fa-arrow-down text-danger"></i>' + data["percChanged"];
+  }
 
   var newStock = document.createElement('div');
   newStock.innerHTML = `
   <h5 id="ticker-name" class="rdm-ticker-name">
-              Search Results:
+              Random Stock of the Day
             </h5>
             <p id="stock-name" class="rdm-value">Stock name: ` + ticker + `</p>
             <p id="value" class="rdm-value-change">Value: $` + data['price'] + `</p>
             <p id="percent" class="rdm-percent-change">
               Points changed:
-              <i class="arrow fas fa-arrow-up text-success"></i> ` + data['percChanged'] + `
+              ` + arrow + `
             </p>`;
             
   document.getElementById("rando_stock").innerHTML = newStock.innerHTML;
