@@ -12,14 +12,7 @@ async function returnStockData(ticker) {
   if(day == 1) {
     adj = 3;
   }
-  // The commented line 21 pushes back yesterday's results to Friday,
-  // however last Friday as of our presentation day was Good Friday,
-  // meaning that the stock market was closed, resulting in no data pushed.
-  // We defaulted to last Thursday for presentation, but
-  // for any day other than 4/10/23 that this program is used should uncomment it
-  // and delete line 22.
-  //var dd = String(today.getDate() - adj).padStart(2, "0");
-  var dd = String(today.getDate() - 4).padStart(2, "0");
+  var dd = String(today.getDate() - adj).padStart(2, "0");
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
   today = yyyy + "-" + mm + "-" + dd;
